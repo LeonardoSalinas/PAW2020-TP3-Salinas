@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Turno{% endblock %}
+
+{% block header %}
+    {{ include('partials/nav.html') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+<h2>Turnos</h2>
+<table>
+{% for turno in turnos %}
+<tr>
+    <td>{{ turno.nombre }}</td>
+    <td>{{ turno.email }}</td>
+    <td>{{ turno.telefono }}</td>
+
+</tr>
+{% else %}
+<span>No hay turnos registradas</span>
+{% endfor %}
+</table>
+{% endblock %}
