@@ -13,33 +13,7 @@ class TurnoController extends Controller
         $this->model = new Turno();
     }
 
-  /*  public function index()
-    {
-        include "app/views/view/mainview.php";
-    }
-
-
-    public function turno()
-    {
-       $p = new Persistencia;
-       $lista = $p->leer();
-        
-        include "views/turnosview.php";
-    }
-
-
-
-    public function ficha()
-    {
-        //recupero la variable de la url
-        $id = $_GET ["i"];
-       $p = new Persistencia;
-       $turno = $p->buscar($id);
-       // echo print_r( $turno);
-        include "views/fichaview.php";
-    }
-
-*/
+  
     /**
      * Show all task
      */
@@ -87,5 +61,11 @@ class TurnoController extends Controller
 
     }
 
+    public function ficha(){
+       
+        $turno = $this->model->getItem($_GET ["i"]);
+        
+        return view('ficha', compact('turno'));
+    }
 
 }

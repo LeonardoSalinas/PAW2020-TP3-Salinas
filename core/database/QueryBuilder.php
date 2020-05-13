@@ -36,7 +36,12 @@ class QueryBuilder
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS);
     }
-
+    public function selectItem($table,$item)
+    {
+        $statement = $this->pdo->prepare("select * from {$table} where id={$item}");
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
     /**
      * Insert a record into a table.
      *
