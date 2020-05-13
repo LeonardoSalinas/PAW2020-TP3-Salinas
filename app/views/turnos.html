@@ -13,16 +13,36 @@
 
 {% block main %}
 <h2>Turnos</h2>
-<table>
-{% for turno in turnos %}
-<tr>
-    <td>{{ turno.nombre }}</td>
-    <td>{{ turno.email }}</td>
-    <td>{{ turno.telefono }}</td>
 
-</tr>
-{% else %}
-<span>No hay turnos registradas</span>
-{% endfor %}
+<table border="1">
+    <tbody>
+      <tr>
+      <th scope="col">Fecha del Turno</th>
+        <th scope="col">Hora del turno</th>
+        <th scope="col">Nombre del paciente</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Email</th>
+        <th scope="col">Link a la ficha del turno</th>
+       
+      </tr>
+      {% for turno in turnos %}
+        <tr>
+    
+            <th> {{ turno.fecha_turno }}</th>
+            <th> {{ turno.hora_turno }}</th>
+            <th> {{ turno.nombre }}</th>
+            <th> {{ turno.telefono }}</th>
+            <th> {{ turno.email }}</th>
+                
+            <th> <a href=\/ficha?i={{ turno.id }}>Ficha de {{ turno.nombre }}</a></th>
+        </tr>
+        
+      {% else %}
+        <span>No hay turnos registradas</span>
+      {% endfor %}
+        
+    </tbody>
+
 </table>
+
 {% endblock %}

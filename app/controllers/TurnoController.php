@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\core\Validations;
 use App\Models\Turno;
 
 class TurnoController extends Controller
@@ -55,12 +56,35 @@ class TurnoController extends Controller
 
     public function save()
     {
-        $task = [
-            'description' => $_POST['description'],
-            'completed' => (isset($_POST['completed'])) ? 1 : 0
+        $turno = [
+            
+            'nombre' => $_POST['nombre'],
+            'email' => $_POST['email'],
+            'telefono' => $_POST['tel'],
+            'edad' => $_POST['edad'],
+            'talla' => $_POST['calza'],
+            'altura' => $_POST['altura'],
+            'fecha_nacimiento' => $_POST['nacim'],
+            'color_pelo' => $_POST['cpelo'],
+            'fecha_turno' => $_POST['fechaturno'],
+            'hora_turno' => $_POST['horaturno'],
+            'imagen' => "imagen",
         ];
-        $this->model->insert($task);
-        return redirect('tasks');
+        $validations = new Validations;
+        if ($validations->ValidAll($turno["nombre"], $turno["email"], $turno["telefono"], $turno["edad"], $turno["talla"], $turno["altura"], $turno["fecha_nacimiento"], $turno["color_pelo"], $turno["fecha_turno"], $turno["hora_turno"], $_FILES['imgSubida'])){
+        
+            //$turno = new Turno($nombre, $email, $tel, $edad, $calza, $altura, $nacim, $cpelo, $fechaturno, $horaturno, $imgRelName);
+           
+            $this->model->insert($turno);
+            return redirect('turno');
+         
+            
+    
+          } else { //Sino, al menos una de las validaciones fallo
+            echo "<h2>Los datos ingresados fueron incorrectos.<h2>";
+          }
+      
+
     }
 
 
