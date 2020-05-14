@@ -30,8 +30,11 @@ class TurnoController extends Controller
 
     public function save()
     {
+      //tomo la imagen subida y la convierto en string y base64
         $image = $_FILES['imgSubida']['tmp_name'];
         $imgContenido = base64_encode(file_get_contents($image));
+        
+        //creo un array para validar el turno
         $turno = [
             
             'nombre' => $_POST['nombre'],
@@ -57,9 +60,19 @@ class TurnoController extends Controller
          
             
     
-          } else { //Sino, al menos una de las validaciones fallo
-            echo "<h2>Los datos ingresados fueron incorrectos.<h2>";
-          }
+        } else { //Sino, al menos una de las validaciones fallo
+            $dato=[
+                'nombre' =>  'Los datos ingresados fueron incorrectos.',
+                'imagen' => ''
+
+            ];
+            //consulto si el error fue por el tamaño de la imagen
+            if(!$validations->imgSize($_FILES['imgSubida'])){
+                $dato['imagen'] = 'El tamaño de la imagen debe ser menor a 10MB';
+            }
+            //retorno la vista e crear con las advertencias correspondientes
+            return view('turno.create', compact('dato'));
+        }
       
 
     }

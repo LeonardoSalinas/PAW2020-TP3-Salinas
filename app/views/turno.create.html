@@ -13,6 +13,9 @@
 
 {% block main %}
 <h2>Crear Turno</h2>
+	{% if dato %}
+		<p>{{dato.nombre}}</p>
+	{% endif %}
 	<form enctype="multipart/form-data" action="/turno/save" method="POST">
 	    <br> *Nombre: <input type="text" name="nombre" required>
 	    <br> *E-mail: <input type="email" name="email" required>
@@ -34,7 +37,10 @@
 
 		<!-- Subir imagen -->
 	    <diagnostico-img>
-	        <h3>Subir imagen</h3>
+			<h3>Subir imagen</h3>
+			{% if dato %}
+				<p>{{dato.imagen}}</p>
+			{% endif %}
 			<input type="file" accept="image/jpeg, image/png" name="imgSubida"><br>
     	</diagnostico-img>
 

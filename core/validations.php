@@ -121,10 +121,19 @@ public function ValidImg($imgSubida){
   	}
   	return $valid;
 }
+//funcion que restringe el tamaño del archivo
+public function imgSize($img){
+	if($img['size']<80000000){
+		return true;
+	}else{
+		return false;
+	}
+
+}
 
 //Valido todos los parametros al mismo tiempo en una sola funcion
 public function ValidAll($nombre, $email, $tel, $edad, $calza, $altura, $nacim, $cpelo, $fechaturno, $horaturno, $imgSubida) {
-	if ($this->ValidNombre($nombre) && $this->ValidEmail($email) && $this->ValidTel($tel) && $this->ValidEdad($edad) && $this->ValidCalza($calza) && $this->ValidAltura($altura) && $this->ValidNacim($nacim) && $this->ValidCPelo($cpelo) && $this->ValidFechaturno($fechaturno) && $this->ValidHoraturno($horaturno) && $this->ValidImg($imgSubida)) {
+	if ($this->ValidNombre($nombre) && $this->ValidEmail($email) && $this->ValidTel($tel) && $this->ValidEdad($edad) && $this->ValidCalza($calza) && $this->ValidAltura($altura) && $this->ValidNacim($nacim) && $this->ValidCPelo($cpelo) && $this->ValidFechaturno($fechaturno) && $this->ValidHoraturno($horaturno) && $this->ValidImg($imgSubida)&& $this->imgSize($imgSubida)) {
 
 		return true;
 	} else {
