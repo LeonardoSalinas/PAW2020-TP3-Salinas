@@ -42,6 +42,7 @@ class QueryBuilder
         $statement->execute();
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
+ 
     /**
      * Insert a record into a table.
      *

@@ -30,6 +30,8 @@ class TurnoController extends Controller
 
     public function save()
     {
+        $image = $_FILES['imgSubida']['tmp_name'];
+        $imgContenido = base64_encode(file_get_contents($image));
         $turno = [
             
             'nombre' => $_POST['nombre'],
@@ -42,7 +44,7 @@ class TurnoController extends Controller
             'color_pelo' => $_POST['cpelo'],
             'fecha_turno' => $_POST['fechaturno'],
             'hora_turno' => $_POST['horaturno'],
-            'imagen' => "imagen",
+            'imagen' => $imgContenido,
         ];
         $validations = new Validations;
         if ($validations->ValidAll($turno["nombre"], $turno["email"], $turno["telefono"], $turno["edad"], $turno["talla"], $turno["altura"], $turno["fecha_nacimiento"], $turno["color_pelo"], $turno["fecha_turno"], $turno["hora_turno"], $_FILES['imgSubida'])){
@@ -50,7 +52,8 @@ class TurnoController extends Controller
             //$turno = new Turno($nombre, $email, $tel, $edad, $calza, $altura, $nacim, $cpelo, $fechaturno, $horaturno, $imgRelName);
            
             $this->model->insert($turno);
-            return redirect('turno');
+         
+           return redirect('turno');
          
             
     
@@ -64,7 +67,7 @@ class TurnoController extends Controller
     public function ficha(){
        
         $turno = $this->model->getItem($_GET ["i"]);
-        
+       
         return view('ficha', compact('turno'));
     }
 
