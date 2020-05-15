@@ -8,9 +8,13 @@ use App\Models\Turno;
 
 class TurnoController extends Controller
 {
+    public $datos;
     public function __construct()
     {
         $this->model = new Turno();
+        $datos = [
+            'dato'=>''
+        ];
     }
 
   
@@ -18,9 +22,9 @@ class TurnoController extends Controller
      * Show all task
      */
     public function index()
-    {
+    { $datos = $this->datos;
         $turnos = $this->model->get();
-        return view('turnos', compact('turnos'));
+        return view('turnos', compact('turnos','datos'));
     }
 
     public function create()
@@ -83,15 +87,16 @@ class TurnoController extends Controller
        
         return view('ficha', compact('turno'));
     }
-
+  //Elimina el turno y actualiza la lista enviando un mensaje
     public function delete(){
         $turno = $this->model->delete($_GET ["i"]);
-        $datos = [
-            'dato'=>'El turno fue eliminado.'
-        ];
-     return $this->index();
-       // return view('turnos', compact('datos'));
-        //return redirect('turno');
-    }
-
+        $this->datos['dato'] = 'El turno fue eliminado.';
+        return $this->index();
+     }
+//Modifica el turno y actualiza la lista enviando un mensaje
+     public function update(){
+        $turno = $this->model->update($_GET ["i"]);
+        $this->datos['dato'] = 'El turno fue modificado.';
+        return $this->index();
+     }
 }

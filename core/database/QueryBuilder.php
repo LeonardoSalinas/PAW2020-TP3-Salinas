@@ -80,6 +80,18 @@ class QueryBuilder
         
     }
 
+    public function update ($table,$item){
+        try {
+            $statement = $this->pdo->prepare("delete from {$table} where id={$item}");
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            $this->sendToLog($e);
+        }
+            
+        
+    }
+
     private function sendToLog(Exception $e)
     {
         if ($this->logger) {

@@ -24,4 +24,9 @@ class Turno extends Model
         $this->db->delete($this->table, $item);
 
     }
+
+    public function update($item){
+        $this->db->update($this->table, $item);
+
+    }
 }
