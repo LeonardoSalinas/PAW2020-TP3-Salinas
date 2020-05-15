@@ -84,4 +84,14 @@ class TurnoController extends Controller
         return view('ficha', compact('turno'));
     }
 
+    public function delete(){
+        $turno = $this->model->delete($_GET ["i"]);
+        $datos = [
+            'dato'=>'El turno fue eliminado.'
+        ];
+     return $this->index();
+       // return view('turnos', compact('datos'));
+        //return redirect('turno');
+    }
+
 }

@@ -11,6 +11,7 @@
     $router->get('turno/create', 'TurnoController@create');
     $router->post('turno/save', 'TurnoController@save');
     $router->get('turno/ficha', 'TurnoController@ficha');
+    $router->get('turno/delete', 'TurnoController@delete');
 
     $router->get('not_found', 'ProjectController@notFound');
     $router->get('internal_error', 'ProjectController@internalError');

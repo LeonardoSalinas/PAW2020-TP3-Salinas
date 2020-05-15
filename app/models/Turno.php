@@ -19,4 +19,9 @@ class Turno extends Model
     {
         $this->db->insert($this->table, $turno);
     }
+
+    public function delete($item){
+        $this->db->delete($this->table, $item);
+
+    }
 }

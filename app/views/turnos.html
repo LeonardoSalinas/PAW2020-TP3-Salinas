@@ -13,7 +13,9 @@
 
 {% block main %}
 <h2>Turnos</h2>
-
+      {% if dato %}
+				<p>{{datos.dato}}</p>
+			{% endif %}
 <table border="1">
     <tbody>
       <tr>
@@ -23,7 +25,7 @@
         <th scope="col">Teléfono</th>
         <th scope="col">Email</th>
         <th scope="col">Link a la ficha del turno</th>
-       
+        <th scope="col"></th>
       </tr>
       {% for turno in turnos %}
         <tr>
@@ -34,7 +36,14 @@
             <th> {{ turno.telefono }}</th>
             <th> {{ turno.email }}</th>
                 
-            <th> <a href=/turno/ficha?i={{ turno.id }}>Ficha de {{ turno.nombre }}</a></th>
+            <th> 
+              <a href=/turno/ficha?i={{ turno.id }}>Ficha de {{ turno.nombre }}</a>
+            </th> 
+            <th> 
+              <button class="delete" type="button" onclick="location.href='/turno/delete?i={{ turno.id }}'">Delete</button>
+              
+              <button class="edit" type="button" onclick="location.href='/turno'">Edit</button>
+            </th>
         </tr>
         
       {% else %}
