@@ -80,16 +80,27 @@ class QueryBuilder
         
     }
 
-    public function update ($table,$item){
+
+    public function update($table, $parameters,$filtro)
+    {
+        $parameters = $this->cleanParameterName($parameters);
+       
+        $sql = sprintf(
+            'update %s set %s =? where %s= %s',
+            $table,
+            implode('=?, ', array_keys($parameters)),
+            $filtro,
+            $parameters['id']
+        );
         try {
-            $statement = $this->pdo->prepare("delete from {$table} where id={$item}");
-            $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
+            $statement = $this->pdo->prepare($sql);
+           
+          
+            $statement->execute(array_values( $parameters));
+            
         } catch (Exception $e) {
             $this->sendToLog($e);
         }
-            
-        
     }
 
     private function sendToLog(Exception $e)

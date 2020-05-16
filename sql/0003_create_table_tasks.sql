@@ -12,4 +12,4 @@ CREATE TABLE turno (
     color_pelo text NOT NULL,
     fecha_turno date NOT NULL,
     hora_turno time NOT NULL,
-    imagen text NOT NULL);
+    imagen LONGBLOB NOT NULL);

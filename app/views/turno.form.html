@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Crear Tarea Nueva{% endblock %}
+
+{% block header %}
+    {{ include('partials/nav.html') }}
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <meta name="keywords" content="PAW,2018,Templates,PHP">
+{% endblock %}
+
+{% block main %}
+<h2>{{datos.titulo}}</h2>
+	{% if datos %}
+		<p>{{datos.dato}}</p>
+	{% endif %}
+	<form enctype="multipart/form-data" action="/turno/save?i={{ turno.id }}" method="POST">
+	    <br> *Nombre: <input type="text" name="nombre" value='{{turno.nombre}}' required>
+	    <br> *E-mail: <input type="email" name="email"value='{{turno.email}}' required>
+	    <br> *Teléfono: <input type="tel" name="tel" value='{{turno.telefono}}'required>
+	    <br> Edad: <input type="number" name="edad" value='{{turno.edad}}' min="1" max="100">
+	    <br>Talla de calzado: <input type="number" name="calza" value='{{turno.talla}}' step ="1" min="20" max="45">
+	    <br>Altura: <input type="range" min="0" max="350" step="1" name="altura" value='{{turno.altura}}'>
+	    <br>*Fecha de nacimiento: <input type="date" name="nacim" value='{{turno.fecha_nacimiento}}' required>
+	    <br>Color de pelo: <input list="colorpelo" name="cpelo" value='{{turno.color_pelo}}'>
+	    <datalist id="colorpelo">
+	            <option value="negro">
+	            <option value="rubio">
+	            <option value="marron">
+	            <option value="pelirrojo">
+	            <option value="blanco">
+	    </datalist>
+	    <br>*Fecha del Turno: <input type="date" name="fechaturno" value='{{turno.fecha_turno}}' required>
+	    <br>Horario del turno: <input type="time" name="horaturno" min="08:00:00" max="17:00:00" value='{{turno.hora_turno}}' step="900"><br>
+
+		<!-- Subir imagen -->
+	    <diagnostico-img >
+			<h3>Subir imagen</h3>
+			{% if datos %}
+				<p>{{datos.imagen}}</p>
+			{% endif %}
+			<input type="file"  accept="image/jpeg, image/png" name="imgSubida"><br>
+    	</diagnostico-img>
+
+	    <input type="submit" value="Enviar">
+	    <input type="reset" value="Limpiar">
+
+    </form>
+{% endblock %}

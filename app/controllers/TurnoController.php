@@ -13,7 +13,11 @@ class TurnoController extends Controller
     {
         $this->model = new Turno();
         $datos = [
-            'dato'=>''
+            'titulo'=>'',
+            'dato'=>'',
+           
+            'imagen' => ''
+
         ];
     }
 
@@ -24,58 +28,53 @@ class TurnoController extends Controller
     public function index()
     { $datos = $this->datos;
         $turnos = $this->model->get();
+
         return view('turnos', compact('turnos','datos'));
     }
 
     public function create()
-    {
-        return view('turno.create');
+    {$this->datos['titulo']="Crear turno";
+        $datos = $this->datos;
+        return view('turno.form',compact('datos'));
     }
 
     public function save()
     {
-      //tomo la imagen subida y la convierto en string y base64
-        $image = $_FILES['imgSubida']['tmp_name'];
-        $imgContenido = base64_encode(file_get_contents($image));
+        $this->model->load();
+        $turno = $this->model->getTurno();
         
-        //creo un array para validar el turno
-        $turno = [
-            
-            'nombre' => $_POST['nombre'],
-            'email' => $_POST['email'],
-            'telefono' => $_POST['tel'],
-            'edad' => $_POST['edad'],
-            'talla' => $_POST['calza'],
-            'altura' => $_POST['altura'],
-            'fecha_nacimiento' => $_POST['nacim'],
-            'color_pelo' => $_POST['cpelo'],
-            'fecha_turno' => $_POST['fechaturno'],
-            'hora_turno' => $_POST['horaturno'],
-            'imagen' => $imgContenido,
-        ];
+        //valida todos los datos
         $validations = new Validations;
         if ($validations->ValidAll($turno["nombre"], $turno["email"], $turno["telefono"], $turno["edad"], $turno["talla"], $turno["altura"], $turno["fecha_nacimiento"], $turno["color_pelo"], $turno["fecha_turno"], $turno["hora_turno"], $_FILES['imgSubida'])){
         
-            //$turno = new Turno($nombre, $email, $tel, $edad, $calza, $altura, $nacim, $cpelo, $fechaturno, $horaturno, $imgRelName);
-           
+           //comparo el id para ver si es un insert o un update
+            if($turno["id"]==""){
+            
             $this->model->insert($turno);
+           }else {
+               
+             $this->model->update($turno,"id");
+           }
+           
          
            return redirect('turno');
          
             
     
         } else { //Sino, al menos una de las validaciones fallo
-            $dato=[
-                'nombre' =>  'Los datos ingresados fueron incorrectos.',
+            $this->datos=[
+                'dato' =>  'Los datos ingresados fueron incorrectos.',
                 'imagen' => ''
 
             ];
             //consulto si el error fue por el tamaño de la imagen
             if(!$validations->imgSize($_FILES['imgSubida'])){
-                $dato['imagen'] = 'El tamaño de la imagen debe ser menor a 10MB';
+                $this->datos['imagen'] = 'El tamaño de la imagen debe ser menor a 10MB';
             }
+
             //retorno la vista e crear con las advertencias correspondientes
-            return view('turno.create', compact('dato'));
+            $datos = $this->datos;
+            return view('turno.form', compact('turno','datos'));
         }
       
 
@@ -95,8 +94,10 @@ class TurnoController extends Controller
      }
 //Modifica el turno y actualiza la lista enviando un mensaje
      public function update(){
-        $turno = $this->model->update($_GET ["i"]);
-        $this->datos['dato'] = 'El turno fue modificado.';
-        return $this->index();
+        
+        $turno = $this->model->getItem($_GET ["i"]);
+         $this->datos['titulo']="Modificar turno";
+        $datos = $this->datos;
+        return view('turno.form', compact('turno','datos'));
      }
 }
