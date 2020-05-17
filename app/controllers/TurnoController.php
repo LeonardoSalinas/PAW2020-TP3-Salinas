@@ -50,10 +50,18 @@ class TurnoController extends Controller
            //comparo el id para ver si es un insert o un update
             if($turno["id"]==""){
             
-            $this->model->insert($turno);
+             $turno =$this->model->insert();
+          
+            $logger = \App\Core\App::get('logger');
+            $logger->info('INSERT:TURNOS:'.$turno['id']);
+           
+            return view('ficha',compact('turno'));
            }else {
                
-             $this->model->update($turno,"id");
+             $this->model->update("id");
+             $logger = \App\Core\App::get('logger');
+             $logger->info('UPDATE:TURNOS: '.$turno['id'].' '.$turno['nombre'].' '.$turno['email'].' '.$turno['telefono'].' '.$turno['edad'].' '.$turno['talla'].' '.$turno['altura'].' '.$turno['fecha_nacimiento'].' '.$turno['color_pelo'].' '.$turno['fecha_turno'].' '.$turno['hora_turno']);
+       
            }
            
          
@@ -88,8 +96,13 @@ class TurnoController extends Controller
     }
   //Elimina el turno y actualiza la lista enviando un mensaje
     public function delete(){
-        $turno = $this->model->delete($_GET ["i"]);
+       $turno= $this->model->getItem($_GET ["i"]);
+     
+        $this->model->delete($turno['id']);
+
         $this->datos['dato'] = 'El turno fue eliminado.';
+        $logger = \App\Core\App::get('logger');
+        $logger->info('DELETE:TURNOS: '.$turno['id'].' '.$turno['nombre'].' '.$turno['email'].' '.$turno['telefono'].' '.$turno['edad'].' '.$turno['talla'].' '.$turno['altura'].' '.$turno['fecha_nacimiento'].' '.$turno['color_pelo'].' '.$turno['fecha_turno'].' '.$turno['hora_turno']);
         return $this->index();
      }
 //Modifica el turno y actualiza la lista enviando un mensaje

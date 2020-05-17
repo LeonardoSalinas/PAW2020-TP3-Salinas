@@ -18,9 +18,10 @@ class Turno extends Model
     public function getItem($item){
         return $this->db->selectItem($this->table,$item);
     }
-    public function insert(array $turno)
+    public function insert()
     {
-        $this->db->insert($this->table, $turno);
+       $this->turno['id']= $this->db->insert($this->table, $this->getTurno());
+       return $this->getTurno();
     }
 
     public function delete($item){
@@ -28,9 +29,9 @@ class Turno extends Model
 
     }
 
-    public function update($parameters,$item){
+    public function update($item){
        
-        $this->db->update($this->table,$parameters, $item);
+        $this->db->update($this->table,$this->getTurno(), $item);
 
     }
     public function getTurno(){

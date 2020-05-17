@@ -63,6 +63,7 @@ class QueryBuilder
             $statement = $this->pdo->prepare($sql);
            
             $statement->execute($parameters);
+            return  $this->pdo->lastInsertId();
         } catch (Exception $e) {
             $this->sendToLog($e);
         }
@@ -72,7 +73,7 @@ class QueryBuilder
         try {
             $statement = $this->pdo->prepare("delete from {$table} where id={$item}");
             $statement->execute();
-            return $statement->fetch(PDO::FETCH_ASSOC);
+          //  return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             $this->sendToLog($e);
         }
