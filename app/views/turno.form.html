@@ -41,10 +41,11 @@
 			{% if datos %}
 				<p>{{datos.imagen}}</p>
 			{% endif %}
+		{#  muestra image en el modificar
 			{% if turno.imagen !='' %}
 				<img class="img" src="data:image/jpg png;base64,{{ turno.imagen }}" />	
 			{% endif %}
-
+		#}
 				<input type="file" src="data:image/jpg png;base64,{{ turno.imagen }}" accept="image/jpeg, image/png" name="imgSubida"><br>
     	</diagnostico-img>
 
