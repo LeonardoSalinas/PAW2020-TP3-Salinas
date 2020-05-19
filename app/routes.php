@@ -8,11 +8,11 @@
     $router->post('users', 'UsersController@store');
 
     $router->get('turno', 'TurnoController@index');
-    $router->get('turno/create', 'TurnoController@create');
-    $router->post('turno/save', 'TurnoController@save');
-    $router->get('turno/ficha', 'TurnoController@ficha');
-    $router->get('turno/delete', 'TurnoController@delete');
-    $router->get('turno/edit', 'TurnoController@update');
+    $router->get('create', 'TurnoController@create');
+    $router->post('save', 'TurnoController@save');
+    $router->get('ficha', 'TurnoController@ficha');
+    $router->get('delete', 'TurnoController@delete');
+    $router->get('edit', 'TurnoController@update');
    
 
 

@@ -16,7 +16,7 @@
 	{% if datos %}
 		<p>{{datos.dato}}</p>
 	{% endif %}
-	<form enctype="multipart/form-data" action="/turno/save?i={{ turno.id }}" method="POST">
+	<form enctype="multipart/form-data" action="/save?i={{ turno.id }}" method="POST">
 	    <br> *Nombre: <input type="text" name="nombre" value='{{turno.nombre}}' required>
 	    <br> *E-mail: <input type="email" name="email"value='{{turno.email}}' required>
 	    <br> *Teléfono: <input type="tel" name="tel" value='{{turno.telefono}}'required>

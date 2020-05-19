@@ -37,11 +37,11 @@
             <th> {{ turno.email }}</th>
                 
             <th> 
-              <a href=/turno/ficha?i={{ turno.id }}>Ficha de {{ turno.nombre }}</a>
+              <a href=/ficha?i={{ turno.id }}>Ficha de {{ turno.nombre }}</a>
             </th> 
             <th> 
-              <button class="edit" type="button"  onclick="location.href='/turno/edit?i={{ turno.id }}'">Edit</button>
-              <button class="delete" type="button" onclick="location.href='/turno/delete?i={{ turno.id }}'">Delete</button>
+              <button class="edit" type="button"  onclick="location.href='/edit?i={{ turno.id }}'">Edit</button>
+              <button class="delete" type="button" onclick="location.href='/delete?i={{ turno.id }}'">Delete</button>
             </th>
         </tr>
         
