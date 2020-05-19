@@ -12,11 +12,11 @@
 {% endblock %}
 
 {% block main %}
-<h2>Turnos</h2>
+<h1 class="turnosH1">Turnos</h1>
       {% if datos %}
 				<p>{{datos.dato}}</p>
 			{% endif %}
-<table border="1">
+<table class="turnosTable">
     <tbody>
       <tr>
       <th scope="col">Fecha del Turno</th>
@@ -40,9 +40,8 @@
               <a href=/turno/ficha?i={{ turno.id }}>Ficha de {{ turno.nombre }}</a>
             </th> 
             <th> 
-              <button class="delete" type="button" onclick="location.href='/turno/delete?i={{ turno.id }}'">Delete</button>
-              
               <button class="edit" type="button"  onclick="location.href='/turno/edit?i={{ turno.id }}'">Edit</button>
+              <button class="delete" type="button" onclick="location.href='/turno/delete?i={{ turno.id }}'">Delete</button>
             </th>
         </tr>
         

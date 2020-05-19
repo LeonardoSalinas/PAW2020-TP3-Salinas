@@ -1,3 +1,168 @@
-body {
-    background: #999;
+:root {
+	--veraBlue: rgb(0,110,199);
+	--veraGreen: rgb(0,150,69);
+	--veraBlueD: rgb(0, 63, 115);
 }
+
+* {
+	font-family: arial narrow;
+	margin: 0;
+	padding: 0;
+}
+
+.mainNav {
+	border-bottom: 8px solid var(--veraBlue);
+	padding: 0.5em;
+	width: 100%;
+	background: url("images/veramedica.png");
+	background-color: var(--veraGreen);
+	background-position: 97% 50%;
+	background-size: 10em auto;
+	background-repeat: no-repeat;
+}
+
+.mainNav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	/*justify-content: center;*/
+}
+
+.mainNav ul li {
+	padding: 0 2px;
+}
+
+.mainNav ul li a{
+	background-color: var(--veraBlue);
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	border: 2px solid rgb(0,0,0);
+	border-radius: 0.3em;
+	display: inline-block;
+	text-decoration: none;
+	font-weight: bold;
+	color: rgb(255,255,255);
+}
+
+.mainNav ul li a:hover {
+	background-color: var(--veraBlueD);
+}
+
+.homeH1, .fichaH1, .turnosH1, .turnoFormH1 {
+	text-align: left;	
+	background-color: var(--veraGreen);
+	color: rgb(255,255,255);
+	border-top: 8px solid var(--veraBlue);
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: right;
+	padding: 0.2em 1em 0.2em 0;
+}
+
+.turnosTable {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 2em;
+}
+
+.turnosTable tr, .turnosTable th {
+	/*border: 2px solid var(--veraBlue);*/
+	border-bottom: 2px solid grey;
+	padding: 0.5em;
+}
+
+.turnosTable tr:first-child {
+	background-color: var(--veraBlue);
+	color: white;
+	text-transform: uppercase;
+}
+
+.turnosTable .delete, .turnosTable .edit {
+	visibility: hidden;
+}
+
+.turnosTable .delete:before, .turnosTable .edit:before {
+	visibility: visible;
+	font-family: FontAwesome;
+	padding: 0.5em;
+	border: 3px solid grey;
+	border-radius: 5px;
+	color: rgb(255,255,255);
+	background-color: var(--veraBlue);
+	display: block;
+}	
+
+.turnosTable .delete:before {
+	content: "\f00d";
+}
+
+.turnosTable .edit:before {
+	content: "\f040";
+}
+
+.turnosTable .delete:hover:before {
+	background-color: var(--veraBlueD);
+	color: rgb(255,17,0);
+}
+
+.turnosTable .edit:hover:before {
+	background-color: var(--veraBlueD);
+	color: rgb(43,255,0);	
+}
+
+.datosTurno, .datosPaciente {
+	margin: 1em 10vw 0 0; 
+	display: grid;
+	border: solid 2px grey;
+	width: 50vw;
+	float: right;
+}
+
+.datosTurno h2, .datosPaciente h2 {
+	color: rgb(255,255,255);
+	background-color: var(--veraGreen);
+	display: inline-block;
+	padding: 0 0.5em;
+}
+
+.fichaImg {
+	float: left;
+	margin-right: 1em;
+	border: 2px solid grey;
+}
+
+.fichaImg img{
+	max-width: 30vw;	
+	width: 1000em;
+	height: auto;
+}
+
+.datosTurno label, .datosPaciente label {
+	display: block;
+	padding: 0.1em 0.2em;
+}
+
+.datosTurno label:nth-child(2n+1), .datosPaciente label:nth-child(2n+1) {
+	background-color: rgb(191, 191, 191);
+}
+
+.fichaVolverButton {
+	margin: 0 0 0.5em 0.5em;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: rgb(255,255,255);
+	background-color: var(--veraBlue);
+	padding: 0.5em 0.5em 0.5em 0.5em;
+	border: 2px solid rgb(0,0,0);
+	border-radius: 0.3em;
+	font-weight: bold;
+}
+
+.fichaVolverButton:hover {
+	background-color: var(--veraBlueD);
+}
+
+/* borrar los <br> de los form */
