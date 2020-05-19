@@ -42,7 +42,7 @@ class TurnoController extends Controller
     {
         $this->model->load();
         $turno = $this->model->getTurno();
-        
+            
         //valida todos los datos
         $validations = new Validations;
         if ($validations->ValidAll($turno["nombre"], $turno["email"], $turno["telefono"], $turno["edad"], $turno["talla"], $turno["altura"], $turno["fecha_nacimiento"], $turno["color_pelo"], $turno["fecha_turno"], $turno["hora_turno"], $_FILES['imgSubida'])){

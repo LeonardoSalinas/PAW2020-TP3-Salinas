@@ -1,12 +1,8 @@
  <?php
 
     $router->get('', 'PagesController@home');
-    $router->get('about', 'PagesController@about');
-    $router->get('contact', 'PagesController@contact');
-
-    $router->get('users', 'UsersController@index');
-    $router->post('users', 'UsersController@store');
-
+   
+    
     $router->get('turno', 'TurnoController@index');
     $router->get('create', 'TurnoController@create');
     $router->post('save', 'TurnoController@save');
