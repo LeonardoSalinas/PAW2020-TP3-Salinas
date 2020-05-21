@@ -16,15 +16,15 @@
 	{% if datos %}
 		<p>{{datos.dato}}</p>
 	{% endif %}
-	<form enctype="multipart/form-data" action="/save?i={{ turno.id }}" method="POST">
-	    <br> *Nombre: <input type="text" name="nombre" value='{{turno.nombre}}' required>
-	    <br> *E-mail: <input type="email" name="email"value='{{turno.email}}' required>
-	    <br> *Teléfono: <input type="tel" name="tel" value='{{turno.telefono}}'required>
-	    <br> Edad: <input type="number" name="edad" value='{{turno.edad}}' min="1" max="100">
-	    <br>Talla de calzado: <input type="number" name="calza" value='{{turno.talla}}' step ="1" min="20" max="45">
-	    <br>Altura: <input type="range" min="0" max="350" step="1" name="altura" value='{{turno.altura}}'>
-	    <br>*Fecha de nacimiento: <input type="date" name="nacim" value='{{turno.fecha_nacimiento}}' required>
-	    <br>Color de pelo: <input list="colorpelo" name="cpelo" value='{{turno.color_pelo}}'>
+	<form class="turnoForm" enctype="multipart/form-data" action="/save?i={{ turno.id }}" method="POST">
+	    <label for="nombre">Nombre: </label><input type="text" name="nombre" id="nombre" value='{{turno.nombre}}' required>
+	    <label for="email">E-mail: </label><input type="email" name="email" id="email" value='{{turno.email}}' required>
+	    <label for="tel">Teléfono: </label><input type="tel" name="tel" id="tel" value='{{turno.telefono}}'required>
+	    <label for="edad">Edad: </label><input type="number" name="edad" id="edad" value='{{turno.edad}}' min="1" max="100">
+	    <label for="calza">Talla de calzado: </label><input type="number" name="calza" id="calza" value='{{turno.talla}}' step ="1" min="20" max="45">
+	    <label for="altura">Altura: </label><input type="range" min="0" max="350" step="1" name="altura" id="altura" value='{{turno.altura}}'>
+	    <label for="nacim">Fecha de nacimiento: </label><input type="date" name="nacim" id="nacim" value='{{turno.fecha_nacimiento}}' required>
+	    <label for="cpelo">Color de pelo: </label><input list="colorpelo" name="cpelo" id="cpelo" value='{{turno.color_pelo}}'>
 	    <datalist id="colorpelo">
 	            <option value="negro">
 	            <option value="rubio">
@@ -32,11 +32,11 @@
 	            <option value="pelirrojo">
 	            <option value="blanco">
 	    </datalist>
-	    <br>*Fecha del Turno: <input type="date" name="fechaturno" value='{{turno.fecha_turno}}' required>
-	    <br>Horario del turno: <input type="time" name="horaturno" min="08:00:00" max="17:00:00" value='{{turno.hora_turno}}' step="900"><br>
+	    <label for="fechaturno">Fecha del Turno: </label><input type="date" name="fechaturno" id="fechaturno" value='{{turno.fecha_turno}}' required>
+	    <label for="horaturno">Horario del turno: </label><input type="time" name="horaturno" id="horaturno" min="08:00:00" max="17:00:00" value='{{turno.hora_turno}}' step="900"><br>
 
 		<!-- Subir imagen -->
-	    <diagnostico-img >
+	    <diagnostico-img>
 			<h3>Subir imagen</h3>
 			{% if datos %}
 				<p>{{datos.imagen}}</p>
@@ -49,8 +49,8 @@
 				<input type="file" src="data:image/jpg png;base64,{{ turno.imagen }}" accept="image/jpeg, image/png" name="imgSubida"><br>
     	</diagnostico-img>
 
-	    <input type="submit" value="Enviar">
-	    <input type="reset" value="Limpiar">
+	    <input type="submit" class="sendButton" value="Enviar">
+	    <input type="reset" class="clearButton" value="Limpiar">
 
     </form>
 {% endblock %}

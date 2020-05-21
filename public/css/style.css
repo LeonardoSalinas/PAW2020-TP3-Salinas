@@ -1,24 +1,53 @@
+
+/*****************************************************************************/
+/* Variables: Valores según el Manual de Identidad Corporativa de Vera Medica*/
+/*****************************************************************************/
+
+
 :root {
 	--veraBlue: rgb(0,110,199);
 	--veraGreen: rgb(0,150,69);
 	--veraBlueD: rgb(0, 63, 115);
+	--veraFont: arial narrow;
 }
 
+
+/********************/
+/* Estilos globales */
+/********************/
+
+
 * {
-	font-family: arial narrow;
+	font-family: var(--veraFont);
 	margin: 0;
 	padding: 0;
 }
 
+body {
+	height: 100%;
+	padding-bottom: 3.5em;
+	background-color: rgb(191, 191, 191); /* Un color de fondo gris es menos agresivo para la vista. */
+}
+
+
+/*****************/
+/* Nav principal */
+/*****************/
+
+
 .mainNav {
-	border-bottom: 8px solid var(--veraBlue);
+	background: url("images/veramedica.png");
 	padding: 0.5em;
 	width: 100%;
-	background: url("images/veramedica.png");
-	background-color: var(--veraGreen);
 	background-position: 97% 50%;
 	background-size: 10em auto;
 	background-repeat: no-repeat;
+
+	/* Descomenar las siguientes dos líneas para dar un estilo alternativo al nav principal. */
+	/* Si bien refleja mejor al manual de identidad corporativa, decidimos no utilizarlo por defecto ya que se dificulta la visualización del logo de la empresa. */
+
+	/*border-bottom: 8px solid var(--veraBlue);
+	background-color: var(--veraGreen);*/
 }
 
 .mainNav ul {
@@ -35,9 +64,9 @@
 
 .mainNav ul li a{
 	background-color: var(--veraBlue);
-	padding: 0.5em 0.5em 0.5em 0.5em;
+	padding: 0.5em;
 	border: 2px solid rgb(0,0,0);
-	border-radius: 0.3em;
+	border-radius: 3px;
 	display: inline-block;
 	text-decoration: none;
 	font-weight: bold;
@@ -46,7 +75,14 @@
 
 .mainNav ul li a:hover {
 	background-color: var(--veraBlueD);
+	text-decoration: underline;
 }
+
+
+/***********************************/
+/* Títulos H1 de todas las páginas */
+/***********************************/
+
 
 .homeH1, .fichaH1, .turnosH1, .turnoFormH1 {
 	text-align: left;	
@@ -59,12 +95,31 @@
 	width: 100%;
 	text-align: right;
 	padding: 0.2em 1em 0.2em 0;
+	position: fixed;
+}
+
+
+/******************/
+/* Página: Turnos */
+/******************/
+
+
+.turnosStatus {
+	color: rgb(255,255,255);
+	background-color: var(--veraBlue);
+	font-size: 2em;
+	text-align: center;
+	font-weight: bold;
+	display: block;
+	margin-top: 0.5em;
+	padding: 0.2em 0;
+	text-transform: uppercase;
 }
 
 .turnosTable {
 	width: 100%;
 	border-collapse: collapse;
-	margin-top: 2em;
+	margin-top: 1em;
 }
 
 .turnosTable tr, .turnosTable th {
@@ -104,7 +159,7 @@
 
 .turnosTable .delete:hover:before {
 	background-color: var(--veraBlueD);
-	color: rgb(255,17,0);
+	color: rgb(255, 59, 59);
 }
 
 .turnosTable .edit:hover:before {
@@ -112,31 +167,40 @@
 	color: rgb(43,255,0);	
 }
 
+
+/***********************************/
+/* Página: Ficha de turno (Nombre) */
+/***********************************/
+
+
 .datosTurno, .datosPaciente {
 	margin: 1em 10vw 0 0; 
 	display: grid;
-	border: solid 2px grey;
+	border: solid 2px var(--veraBlue);
 	width: 50vw;
 	float: right;
 }
 
 .datosTurno h2, .datosPaciente h2 {
 	color: rgb(255,255,255);
-	background-color: var(--veraGreen);
+	background-color: var(--veraBlue);
 	display: inline-block;
 	padding: 0 0.5em;
 }
 
 .fichaImg {
 	float: left;
-	margin-right: 1em;
-	border: 2px solid grey;
+	margin: 1em;
+	border: 2px solid var(--veraBlue);
 }
 
 .fichaImg img{
-	max-width: 30vw;	
-	width: 1000em;
+	max-width: 30vw;
 	height: auto;
+
+	/*
+	width: 1000em;
+	*/
 }
 
 .datosTurno label, .datosPaciente label {
@@ -144,20 +208,19 @@
 	padding: 0.1em 0.2em;
 }
 
-.datosTurno label:nth-child(2n+1), .datosPaciente label:nth-child(2n+1) {
-	background-color: rgb(191, 191, 191);
+.datosTurno label:nth-child(2n), .datosPaciente label:nth-child(2n) {
+	background-color: rgb(255, 255, 255);
 }
 
 .fichaVolverButton {
 	margin: 0 0 0.5em 0.5em;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 	color: rgb(255,255,255);
 	background-color: var(--veraBlue);
 	padding: 0.5em 0.5em 0.5em 0.5em;
 	border: 2px solid rgb(0,0,0);
-	border-radius: 0.3em;
 	font-weight: bold;
 }
 
@@ -165,4 +228,155 @@
 	background-color: var(--veraBlueD);
 }
 
-/* borrar los <br> de los form */
+
+/********************************************************/
+/* Página: formularios de Crear Turno y Modificar Turno */
+/********************************************************/
+
+
+.turnoForm {
+	margin-top: 1em;
+}
+
+.turnoForm label, diagnostico-img h3 {
+	text-align: center;
+	color: rgb(255,255,255);
+    background-color: var(--veraBlue);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+diagnostico-img h3 {
+	font-size: 1em;
+}
+
+.turnoForm label {
+	float: left;
+    width: 12em;
+    clear: left;
+    padding-right: 1em;
+    margin-bottom: 0.4em;
+    cursor: pointer;
+}
+
+.turnoForm label:hover {
+	background-color: var(--veraBlueD);
+}
+
+.turnoForm input:not(:nth-last-child(-n+2)) {
+	float:left;
+	margin-left: 1em;
+	width: 131px;
+	border: 1px solid var(--veraGreen);
+}
+
+diagnostico-img {
+	margin-top: 1em;
+	float: left;
+	clear: left;
+	border: 2px solid var(--veraBlue);
+
+}
+
+.sendButton, .clearButton {
+	float: left;
+	margin: 1em;
+	padding: 0.5em;
+	border: 3px solid grey;
+	color: rgb(255,255,255);
+	font-weight: bold;
+	font-size: 1.2em;
+	background-color: var(--veraBlue); 
+}
+
+.sendButton:hover, .clearButton:hover {
+	background-color: var(--veraBlueD);
+	cursor: pointer;
+}
+
+.sendButton:hover {
+	color: rgb(43,255,0);	
+}
+
+.clearButton:hover {
+	color: rgb(255, 59, 59);
+}
+
+.sendButton {
+	clear: left;
+}
+
+.turnoForm label:nth-child(1):before,
+.turnoForm label:nth-child(3):before,
+.turnoForm label:nth-child(5):before,
+.turnoForm label:nth-child(13):before,
+.turnoForm label:nth-child(18):before {
+	content: "(*) ";
+}
+
+
+/*********************************************************/
+/* Si la pantalla que visualiza la página es muy pequeña */
+/*********************************************************/
+
+
+@media only screen and (max-width: 425px) {
+
+	body {
+		padding-bottom: 15em;
+	}
+
+	.mainNav {
+		background-image: none;
+		padding: 0.5em 0;
+	}
+
+	.mainNav ul li {
+		padding: 0;
+	}
+
+	.mainNav ul li a{
+		padding: 0.5em 0.2em;
+		border: 1px solid rgb(0,0,0);
+	}
+
+	.turnosStatus {
+		font-size: 1em;
+	}
+
+	.turnoForm label {
+		float: none;
+		display: block;
+	}
+
+	.turnoForm > input {
+		margin-bottom: 0.5em;
+	}
+
+	.homeH1, .fichaH1, .turnosH1, .turnoFormH1 {
+		font-size: 1em;
+		padding: 1em;
+	}
+
+	.datosTurno, .datosPaciente, .fichaImg {
+		float: left;
+		clear: both;
+		position: relative;
+		left: 20%;
+		margin: 0.5em 0;
+	}
+
+	.datosTurno, .datosPaciente {
+		font-size: 0.8em;
+		overflow: hidden;
+	}
+
+	.fichaImg {
+		left: 30%;
+	}
+
+	.datosTurno h2, .datosPaciente h2 {
+		font-size: 1.2em;
+		text-align: center;
+	}
+}
