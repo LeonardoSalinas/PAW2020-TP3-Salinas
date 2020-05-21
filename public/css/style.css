@@ -138,7 +138,7 @@ body {
 	visibility: hidden;
 }
 
-.turnosTable .delete:before, .turnosTable .edit:before {
+.turnosTable .delete::before, .turnosTable .edit::before {
 	visibility: visible;
 	font-family: FontAwesome;
 	padding: 0.5em;
@@ -149,20 +149,20 @@ body {
 	display: block;
 }	
 
-.turnosTable .delete:before {
+.turnosTable .delete::before {
 	content: "\f00d";
 }
 
-.turnosTable .edit:before {
+.turnosTable .edit::before {
 	content: "\f040";
 }
 
-.turnosTable .delete:hover:before {
+.turnosTable .delete:hover::before {
 	background-color: var(--veraBlueD);
 	color: rgb(255, 59, 59);
 }
 
-.turnosTable .edit:hover:before {
+.turnosTable .edit:hover::before {
 	background-color: var(--veraBlueD);
 	color: rgb(43,255,0);	
 }
@@ -306,11 +306,11 @@ diagnostico-img {
 	clear: left;
 }
 
-.turnoForm label:nth-child(1):before,
-.turnoForm label:nth-child(3):before,
-.turnoForm label:nth-child(5):before,
-.turnoForm label:nth-child(13):before,
-.turnoForm label:nth-child(18):before {
+.turnoForm label:nth-child(1)::before,
+.turnoForm label:nth-child(3)::before,
+.turnoForm label:nth-child(5)::before,
+.turnoForm label:nth-child(13)::before,
+.turnoForm label:nth-child(18)::before {
 	content: "(*) ";
 }
 
