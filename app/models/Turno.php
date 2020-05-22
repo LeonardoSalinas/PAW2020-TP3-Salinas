@@ -40,9 +40,14 @@ class Turno extends Model
     }
     public function load(){
         //tomo la imagen subida y la convierto en string y base64
+     
         $image = $_FILES['imgSubida']['tmp_name'];
-        $imgContenido = base64_encode(file_get_contents($image));
-        
+        //consulto si existe el archivo
+        if($image!="") {
+            $imgContenido = base64_encode(file_get_contents($image));
+        }else{
+            $imgContenido="";
+        }
         //creo un array para validar el turno
         $this->turno = [
             'id'=> $_GET["i"],//se usa el id para diferenciar entre update o insert

@@ -61,12 +61,10 @@ class TurnoController extends Controller
              $this->model->update("id");
              $logger = \App\Core\App::get('logger');
              $logger->info('UPDATE:TURNOS: '.$turno['id'].' '.$turno['nombre'].' '.$turno['email'].' '.$turno['telefono'].' '.$turno['edad'].' '.$turno['talla'].' '.$turno['altura'].' '.$turno['fecha_nacimiento'].' '.$turno['color_pelo'].' '.$turno['fecha_turno'].' '.$turno['hora_turno']);
-       
+             
            }
-           
-         
-           return redirect('turno');
-         
+           $this->datos['dato'] = 'El turno fue modificado.';
+         return $this->index();
             
     
         } else { //Sino, al menos una de las validaciones fallo
