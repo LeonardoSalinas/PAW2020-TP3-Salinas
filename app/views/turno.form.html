@@ -13,7 +13,7 @@
 
 {% block main %}
 <h1 class="turnoFormH1">{{datos.titulo}}</h1>
-	{% if datos %}
+	{% if datos.dato!="" %}
 		<p class="formStatus">{{datos.dato}}</p>
 	{% endif %}
 	<form class="turnoForm" enctype="multipart/form-data" action="/save?i={{ turno.id }}" method="POST">
