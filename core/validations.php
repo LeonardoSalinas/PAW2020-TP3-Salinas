@@ -3,12 +3,22 @@ namespace App\core;
 
 class Validations{
 
+private  $mesnaje;
+
 
 public function __construct(){
+	
 
+}
+public function getMensaje(){
+	return $this->mesnaje;
 }
 //Validar nombre
 public function ValidNombre($nombre){
+	if(!isset($nombre)|| ($nombre =="")){
+		$this->mesnaje = "Nombre";
+		return false;
+	}
 	return isset($nombre);
 }
 
@@ -18,6 +28,8 @@ public function ValidEmail($email){
 	$valid = false;
 	if (isset($email) && filter_var($email, FILTER_VALIDATE_EMAIL)){
 		$valid = true;
+	}else {
+		$this->mesnaje = "Email";
 	}
 	return $valid;
 }
@@ -25,6 +37,10 @@ public function ValidEmail($email){
 
 //Validar tel
 public function ValidTel($tel){
+	if(!isset($tel)|| ($tel =="")){
+		$this->mesnaje = "Telefono";
+		return false;
+	}
 	return isset($tel);
 }
 
@@ -65,9 +81,14 @@ public function ValidAltura($altura){
 
 //Validar nacim (fecha nacimiento)
 public function ValidNacim($nacim){
-	if (isset($nacim) && $nacim < date("Y-m-d")){
+
+	if (isset($nacim) && $nacim < date("Y-m-d")&& ($nacim!="") ){
 		return true;
+	
 	} else {
+	
+		$this->mesnaje = "Fecha Nacimiento";	
+		
 		return false;
 	}
 }
@@ -75,7 +96,7 @@ public function ValidNacim($nacim){
 
 //Validar cpelo (color pelo)
 public function ValidCPelo($cpelo){
-	$cpeloLista = array ("negro", "rubio", "pelirrojo", "blanco", "marron");
+	$cpeloLista = array ("negro", "rubio", "pelirrojo", "blanco", "marron","");
 	if (in_array($cpelo, $cpeloLista)){
 		return true;
 	} else {
@@ -86,9 +107,11 @@ public function ValidCPelo($cpelo){
 
 //Validar fechaturno
 public function ValidFechaturno($fechaturno){
-	if (isset($fechaturno) && $fechaturno >= date("Y-m-d")){
+	if (isset($fechaturno) && $fechaturno >= date("Y-m-d")&& ($fechaturno	!="") ){
 		return true;
 	} else {
+		$this->mesnaje = "Fecha Turno";	
+		
 		return false;
 	}
 }
@@ -97,13 +120,17 @@ public function ValidFechaturno($fechaturno){
 //Validar horaturno
 public function ValidHoraturno($horaturno){
 	$valid = false;
-	if (isset($horaturno)){
+	if (isset($horaturno) && ($horaturno !="")){
 		$arrayDate = explode(":", $horaturno);
 	  	$minutes = $arrayDate[1]; 
 	  	if (intval($minutes) == 00 || intval($minutes) == 15 || intval($minutes) == 30 || intval($minutes) == 45) {
 	  		$valid = true;
-  		} 
- 	}
+  		} else $this->mesnaje = "Hora Turno";
+	 }else{
+		$this->mesnaje = "Hora Turno";	
+		
+	 }
+	 
  	return $valid;
 }
 

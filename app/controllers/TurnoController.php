@@ -69,7 +69,7 @@ class TurnoController extends Controller
     
         } else { //Sino, al menos una de las validaciones fallo
             $this->datos=[
-                'dato' =>  'Los datos ingresados fueron incorrectos.',
+                'dato' =>  'Los datos ingresados en el campo '. $validations->getMensaje() .' son incorrectos.',
                 'imagen' => ''
 
             ];

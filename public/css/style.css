@@ -322,7 +322,8 @@ diagnostico-img {
 .turnoForm label:nth-child(3)::before,
 .turnoForm label:nth-child(5)::before,
 .turnoForm label:nth-child(13)::before,
-.turnoForm label:nth-child(18)::before {
+.turnoForm label:nth-child(18)::before,
+.turnoForm label:nth-child(20)::before {
 	content: "(*) ";
 }
 
