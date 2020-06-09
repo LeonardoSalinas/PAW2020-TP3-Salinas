@@ -11,6 +11,7 @@ class TurnoController extends Controller
     public $datos;
     public function __construct()
     {
+       
         $this->model = new Turno();
         $datos = [
             'titulo'=>'',
@@ -28,13 +29,16 @@ class TurnoController extends Controller
     public function index()
     { $datos = $this->datos;
         $turnos = $this->model->get();
-
+        $logger = \App\Core\App::get('logger');
+        $logger->info("Se mostro la lista completa");
         return view('turnos', compact('turnos','datos'));
     }
 
     public function create()
     {$this->datos['titulo']="Crear turno";
         $datos = $this->datos;
+        $logger = \App\Core\App::get('logger');
+        $logger->info("Se muestra el formulario de carga turno");
         return view('turno.form',compact('datos'));
     }
 
@@ -73,9 +77,12 @@ class TurnoController extends Controller
                 'imagen' => ''
 
             ];
+            $logger = \App\Core\App::get('logger');
+            $logger->info("El campo ".$validations->getMensaje()." fue incorrecto");
             //consulto si el error fue por el tamaño de la imagen
             if(!$validations->imgSize($_FILES['imgSubida'])){
                 $this->datos['imagen'] = 'El tamaño de la imagen debe ser menor a 10MB';
+                $logger->info("ERROR de Imagen, supero el limite de tamaño");
             }
 
             //retorno la vista e crear con las advertencias correspondientes
@@ -87,7 +94,8 @@ class TurnoController extends Controller
     }
 
     public function ficha(){
-       
+        $logger = \App\Core\App::get('logger');
+       $logger->info('Se mostro la ficha '.$_GET["i"]);
         $turno = $this->model->getItem($_GET ["i"]);
        
         return view('ficha', compact('turno'));
